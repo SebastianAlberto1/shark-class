@@ -18,14 +18,17 @@ class Game():
         pass
         
 
+
 class Entity () :
     def __init__(self, imagePath, size, screen) -> None:
+
         img = pygame.image.load(os.path.join("./", imagePath))
         self.img = pygame.transform.scale(img, size)
-        self.screen = screen
 
+        self.screen = screen
         self.pos = [SCREEN_SIZE[0]/2, 0]
         self.velocity = [0,0]
+
         pass
     def changePosition(self,coordinates):
         self.pos[0] = coordinates [0]
@@ -35,26 +38,27 @@ class Entity () :
         self.screen.blit(self.img, (self.pos[0],self.pos[1]))
         pass
 
+    def jump(self):
+        self.velocity[1] = -5
+    
+    def draw(self):
+            self.screen.blit(self.img, (self.pos[0],self.pos[1]))
+            pass
+    
     def update( self ):
         self.pos[0] = self.pos[0] + self.velocity[0]
         self.pos[1] = self.pos[1] + self.velocity[1]
 
+        #this is just a comment, compiler will ignore
+
         if(self.pos[1] < FLOOR_POSITION):
-            self.velocity[1] = self.velocity[1] + 0.01
+            self.velocity[1] = self.velocity[1] + 0.08
         else:
             self.velocity[1] = 0
-        if (keypressed ['d']):
-            self.velocity [0] = 1
-        else:
-            self.velocity[0] = 0
-            pass 
-        
-        
 
         self.draw()
         pass
-    def jump(self):
-        self.velocity[1] = -4
+
 
 pygame.init()  # initialize pygame
 
