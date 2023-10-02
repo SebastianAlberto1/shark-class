@@ -56,6 +56,12 @@ class Entity () :
         else:
             self.velocity[1] = 0
 
+        if(keyPressed['d']):
+            self.velocity[0] = 1
+        else: 
+            self.velocity[0] = 0
+            pass
+
         self.draw()
         pass
 
@@ -81,10 +87,16 @@ while True:
     ball_3.update()
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
-            if (event.key == pygame.K_x):
-                ball_2.jump()
-            if (event.key == pygame.K_z):
+            if(event.key == pygame.K_w):
                 ball_1.jump()
+
+            if(event.key == pygame.K_d):
+                keyPressed['d'] = True
+
+        if event.type == pygame.KEYUP:
+            if(event.key == pygame.K_d):
+                keyPressed['d'] = False
+
         if event.type == pygame.QUIT:
             sys.exit()
 
